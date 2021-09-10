@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 
 
@@ -15,7 +15,7 @@ Router.post("/signup", async (req, res) => {
 
         // check whether email exist
         const checkUserByEmail = await UserModel.findOne({ email });
-        const checkUserByPhone = await UserModel.findOne({ email });
+        const checkUserByPhone = await UserModel.findOne({ phoneNumber });
 
         if (checkUserByEmail || checkUserByPhone) {
             return res.json({ error: "User already exist!" });
@@ -38,7 +38,7 @@ Router.post("/signup", async (req, res) => {
 
 
     } catch (error) {
-        return res.sendStatus(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message });
     }
 });
 
