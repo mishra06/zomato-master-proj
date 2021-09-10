@@ -24,7 +24,7 @@ Router.post("/signup", async (req, res) => {
         // hash password
         const bcryptSalt = await bcrypt.genSalt(8);
 
-        const hashedPassword = await bcrypt.hash(password, bcryptSalt);
+       // const hashedPassword = await bcrypt.hash( Password, bcryptSalt);
 
         // save to DB
        const newUser = await UserModel.create(req.body.credentials);

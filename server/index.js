@@ -9,10 +9,12 @@ import helmet from "helmet";
 // microservice routes
 import Auth from "./API/Auth";
 
+
 // Database connection
 import ConnectDB from "./database/connection";
 
 const zomato = express();
+
 
 // application middlewares
 zomato.use(express.json());
@@ -31,4 +33,5 @@ zomato.listen(1000,() =>
     .catch(() =>
       console.log("Server is running, but database connection failed... ")
    )}
+
 );
