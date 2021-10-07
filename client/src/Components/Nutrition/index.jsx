@@ -2,7 +2,9 @@ import React from "react";
 
 // components
 import NutritionHeroCarousal from "./NutritionHeroCarousal";
+
 import NutritionCarousal from "./NutritionCarousal";
+
 import NutritionCard from "./NutritionCard";
 
 const Nutrition = () => {
@@ -20,6 +22,7 @@ const Nutrition = () => {
       </div>
     </div>
   );
+
 };
 
 export default Nutrition;
