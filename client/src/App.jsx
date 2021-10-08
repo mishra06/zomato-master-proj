@@ -11,15 +11,36 @@ import Temp from "./Components/temp";
 import Home from "./Page/Home";
 
 function App() {
-  return (
+  return  (
     <>
     <Route path="/" exact>
         <Redirect to="/delivery" />
       </Route>
-     <HomeLayoutHOC path="/:type" exact component={Temp} />
-     <HomeLayoutHOC path="/restaurant/:id" exact component={Home} />
-     </>
-  );
+     <HomeLayoutHOC path="/:type" exact component={Home} />
+     <RestaurantLayoutHOC
+        path="/restaurant/:id/overview"
+        exact
+        component={Overview}
+      />
+      <RestaurantLayoutHOC
+        path="/restaurant/:id/order-online"
+        exact
+        component={OrderOnline}
+      />
+      <RestaurantLayoutHOC path="/restaurant/:id/menu" exact component={Menu} />
+      <RestaurantLayoutHOC
+        path="/restaurant/:id/reviews"
+        exact
+        component={Reviews}
+      />
+      <RestaurantLayoutHOC
+        path="/restaurant/:id/photos"
+        exact
+        component={Photos}
+      />
+      <CheckoutLayoutHOC path="/checkout/orders" exact component={Checkout} />
+    </>
+   );
   }
 
 export default App;
