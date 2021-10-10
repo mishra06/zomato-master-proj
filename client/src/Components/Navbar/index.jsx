@@ -4,10 +4,14 @@ import {HiLocationMarker} from "react-icons/hi";
 import {IoMdArrowDropdown, IoMdArrowDropup} from "react-icons/io";
 import {RiSearch2Line} from "react-icons/ri";
 
+// components
+import SignIn from '../Auth/SignIn';
+import SignUp from '../Auth/SignUp';
+
 
 
 const MobileNav = () => {
-
+    const [isDropDownOpen, setIsDropDownOpen] = useState(false);
     return (
         <div className="flex w-full items-center justify-between lg:hidden">
             <div className="w-28">
@@ -80,11 +84,20 @@ const LargeNav = () => {
 }
 
 const Navbar = () => {
+    const [openSignin, setOpenSignin] = useState(false);
+    const [openSignup, setOpenSignup] = useState(false);
+
+    const openSignInmodal = () => setOpenSignin(true);
+    const openSignUpmodal = () => setOpenSignup(true);
     return (
         <>
+        <SignIn isOpen={openSignin} setIsOpen={setOpenSignin} />
+        <SignUp isOpen={openSignup} setIsOpen={setOpenSignup} />
+
            <nav className="p-4 flex bg-white shadow-md md:shadow-none w-full items-center">
-               <MobileNav />
-               <LargeNav />
+               
+             <MobileNav SignIn={openSignInmodal} SignUp={openSignUpmodal} />
+             <LargeNav SignIn={openSignInmodal} SignUp={openSignUpmodal} />
 
            </nav>
         </>
