@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 // components
-import DeliveryCarousal from "./DeliveryCarousal.jsx";
+import DeliveryCarousal from "./DeliveryCarousal";
 import Brand from "./Brand";
 import RestaurantCard from "../RestaurantCard";
 
