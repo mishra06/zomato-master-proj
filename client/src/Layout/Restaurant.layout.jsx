@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { TiStarOutline } from "react-icons/ti";
 import { RiDirectionLine, RiShareForwardLine } from "react-icons/ri";
 import { BiBookmarkPlus } from "react-icons/bi";
@@ -9,9 +11,38 @@ import ImageGrid from "../Components/restaurant/ImageGrid";
 import InfoButtons from "../Components/restaurant/InfoButtons";
 import RestaurantInfo from "../Components/restaurant/RestaurantInfo";
 import TabContainer from "../Components/restaurant/Tabs";
+import CartContainer from "../Components/Cart/CartContainer";
+
+// Redux actions
+import { getSpecificRestaurant } from "../Redux/Reducer/restaurant/restaurant.action";
+import { getImage } from "../Redux/Reducer/Image/Image.action";
 
 
-const RestaurantLayout = () => {
+const RestaurantLayout = (props) => {
+  const [restaurant, setRestaurant] = useState({
+    images: [],
+    name: "",
+    cuising: "",
+    address: "",
+  });
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSpecificRestaurant(id)).then((data) => {
+      setRestaurant((prev) => ({
+        ...prev,
+        ...data.payload.restaurant,
+      }));
+
+      dispatch(getImage(data.payload.restaurant.photos)).then((data) =>
+        setRestaurant((prev) => ({ ...prev, ...data.payload.image }))
+      );
+    });
+
+    dispatch(getCart());
+  }, []);
+  
     return (
         <>
           {" "}
