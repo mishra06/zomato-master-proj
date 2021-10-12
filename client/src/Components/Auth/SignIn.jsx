@@ -1,35 +1,35 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-// import { signIn } from "../../Redux/Reducer/Auth/Auth.action";
+import { signIn } from "../../Redux/Reducer/Auth/Auth.action";
 
 export default function SignIn({ isOpen, setIsOpen }) {
-//   const [userData, setUserData] = useState({
-//     email: "",
-//     password: "",
-//   });
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
 
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-//   const handleChange = (e) =>
-//     setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (e) =>
+    setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-//   function closeModal() {
-//     setIsOpen(false);
-//   }
+  function closeModal() {
+    setIsOpen(false);
+  }
 
-//   const submit = () => {
-//     setUserData({
-//       email: "",
-//       password: "",
-//     });
-//     dispatch(signIn(userData));
-//   };
+  const submit = () => {
+    setUserData({
+      email: "",
+      password: "",
+    });
+    dispatch(signIn(userData));
+  };
 
-//   const googlesignin = () =>
-//     (window.location.href = "http://localhost:4000/auth/google");
+  const googlesignin = () =>
+    (window.location.href = "http://localhost:4000/auth/google");
 
   return (
     <>
