@@ -6,7 +6,6 @@ import { RiSearch2Line } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import gravatar from "gravatar";
 
-
 // components
 import SignIn from "../Auth/SignIn";
 import SignUp from "../Auth/SignUp";

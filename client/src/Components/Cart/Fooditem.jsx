@@ -1,5 +1,6 @@
 import React from "react";
 import { BsTrashFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 
 import {
   DeleteCart,
