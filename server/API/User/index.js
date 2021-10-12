@@ -1,66 +1,74 @@
+// Libraries
 import express from "express";
 import passport from "passport";
 
-// Database modal
-import { UserModel} from "../../database/allModels";
+// Database model
+import { UserModel } from "../../database/allModels";
 
-const Router = express. Router();
+const Router = express.Router();
 
 /*
-Route           /:_id
-Description     Get user data
-Params           _id
-Body             none
-Access          Public
-Method           Get
+Route   :  /
+Des     :  Get user data
+params  :  _id
+Access  :  Public
+Method  :  GET
 */
+Router.get("/", passport.authenticate("jwt"), async(req, res) => {
+    try {
+        const { email, fullname, phoneNumber, address } = 
+        req.session.passport.user._doc;
+        
 
-Router.get("/:_id", async (req, res) => {
- try {
-     const { _id } = req.params;
-     const getUser = await UserModel.findById(_id);
-
-
- 
- return res.json({ user: getUser });
-} catch (error) {
- return res.status(500).json({ error: error.message });
-}
-
+        return res.json({ user: { email, fullname, phoneNumber, address }  });
+      } catch (error) {
+        return res.status(500).json({ error: error.message });  
+      }
 });
 
+/*
+Route     /:_id
+Des       Get user data
+Params    _id
+BODY      none
+Access    Public
+Method    GET  
+*/
+Router.get("/:_id", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params._id);
+    const { fullname } = user;
+
+    return res.json({ user: { fullname } });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
 
 /*
-Route           /update/:_id
-Description     update user data
-Params           _id
-Body             user data
-Access          Public
-Method          Put
+Route   :  /update
+Des     :  update user id
+params  :  _id
+Body    :  user data
+Access  :  Public
+Method  :  PUT
 */
+Router.put("/update/:userId", async(req, res) => {
+  try {
+      const { userId } = req.params;
+      const { userData } = req.body;
 
-Router.put("/update/:userid", async (req, res) => {
-    try {
-        const { userId } = req.params;
-        const { userData } = req.body;
-        
-        const updateUserData = await UserModel.findByIdAndUpdate
-        (
-        userId,
-        {
-            $set: userData,
-        },
+      const updateUserData = await UserModel.findByIdAndUpdate(userId, 
+      {
+        $set: userData,
+      }, 
+      {  new: true }
+      );
 
-        { new: true }
-        );
-   
       return res.json({ user: updateUserData });
-   } catch (error) {
-      return res.status(500).json({ error: error.message });
-     }
-   
-   });
-
-
+    } catch (error) {
+      return res.status(500).json({ error: error.message });  
+    }
+});
 
 export default Router;
