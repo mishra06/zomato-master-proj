@@ -4,6 +4,7 @@ import passport from "passport";
 
 // Database modal
 import { FoodModel } from "../../database/allModels";
+
 // Validation
 import { ValidateRestaurantId, Validatecategory } from "../../validation/food";
 
@@ -18,16 +19,15 @@ Method    GET
 */
 Router.get("/r/:_id", async (req, res) => {
   try {
-      await ValidateRestaurantId(req.params);
-      const { _id } = req.params;
-      const foods = await FoodModel.find({ restaurant: _id });
+    await ValidateRestaurantId(req.params);
 
-      return res.json({ foods });
+    const { _id } = req.params;
+    const foods = await FoodModel.find({ restaurant: _id });
 
+    return res.json({ foods });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
-    
 });
 
 /*
@@ -57,18 +57,17 @@ Method    GET
 */
 Router.get("/r/:category", async (req, res) => {
   try {
-      await Validatecategory(req.params);
-      const { category } = req.params;
-      const foods = await FoodModel.find({
-           category: { $regex: category, $options: "i" },
+    await Validatecategory(req.params);
+
+    const { category } = req.params;
+    const foods = await FoodModel.find({
+      category: { $regex: category, $options: "i" },
     });
 
-      return res.json({ foods });
-      
+    return res.json({ foods });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
-    
 });
 
 export default Router;
