@@ -1,6 +1,7 @@
 import React from "react";
 import { BsShieldLockFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
+import Razorpay from "razorpay";
 
 // components
 import FoodItem from "../Components/Cart/FoodItem";

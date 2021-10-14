@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 // components
 import Navbar from "../Components/Navbar/checkoutNavbar";
 // redux action
-// import { getCart } from "../Redux/Reducer/Cart/Cart.action";
+import { getCart } from "../Redux/Reducer/Cart/Cart.action";
 
 const CheckoutLayout = (props) => {
   const dispatch = useDispatch();

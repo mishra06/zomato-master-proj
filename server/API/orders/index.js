@@ -38,7 +38,7 @@ Params    _id
 Access    Public
 Method    POST  
 */
-Router.post("/new/:_id", async (req, res) => {
+Router.post("/new", async (req, res) => {
     try {
         const { _id } = req.params;
         const { orderDetails } = req.body;
