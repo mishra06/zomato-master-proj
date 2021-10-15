@@ -18,4 +18,4 @@ const MenuCategory = (props) => {
   );
 };
 
-export default MenuCategory;
+export default MenuCategory

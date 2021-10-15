@@ -71,12 +71,3 @@ function App() {
 }
 
 export default App;
-
-// :type
-
-// delivery
-// dining
-// nightlife
-// nutrition
-
-// master -> type
