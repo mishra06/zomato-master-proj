@@ -1,4 +1,5 @@
 // Library
+// Library
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -78,4 +79,4 @@ Router.get("/google/callback", passport.authenticate("google", {
   }
 );
  
-export default Router;;
+export default Router;
